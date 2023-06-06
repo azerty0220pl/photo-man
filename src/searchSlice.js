@@ -9,7 +9,13 @@ const searchSlice = createSlice({
     defaultState,
     reducers: {
         search: async (state, action) => {
-            let data = await fetch("https://api.unsplash.com/photos/random?count=10");
+            let data;
+            
+            if (action.payload === "")
+                data = await fetch("https://api.unsplash.com/photos/random?count=10");
+            else
+                data = await fetch("https://api.unsplash.com/search/photos?query=" + action.payload);
+
             let local = JSON.parse(localStorage.getItem("photos")).values;
 
             data = await data.map(async x => {
