@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    photos: JSON.parse(localStorage.getItem("photos")).values
+    photos: JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values
 };
 
 const favouritesSlice = createSlice({
-    defaultState,
+    name: "favourites",
+    initialState: defaultState,
     reducers: {
         description: (state, action) => {
             state.photos.find(e => e.id === action.payload.id).description = action.payload.description;

@@ -6,7 +6,8 @@ const defaultState = {
 };
 
 const searchSlice = createSlice({
-    defaultState,
+    name: "search",
+    initialState: defaultState,
     reducers: {
         search: async (state, action) => {
             let data;
@@ -16,7 +17,7 @@ const searchSlice = createSlice({
             else
                 data = await fetch("https://api.unsplash.com/search/photos?query=" + action.payload);
 
-            let local = JSON.parse(localStorage.getItem("photos")).values;
+            let local = JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values;
 
             data = await data.map(async x => {
                 let aux = await x.json();
@@ -44,7 +45,7 @@ const searchSlice = createSlice({
             let photo = state.photos.find(e => e.id === action.payload);
             photo.saved = !photo.saved;
 
-            let local = JSON.parse(localStorage.getItem("photos")).values;
+            let local = JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values;
 
             if(photo.saved)
                 local.push(photo);
