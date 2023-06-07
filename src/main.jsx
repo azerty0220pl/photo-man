@@ -4,6 +4,8 @@ import { store } from './redux/Store';
 import { Provider } from 'react-redux';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import Search from './search';
+import Favourite from './favourite';
+import './index.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,7 +16,7 @@ const router = createHashRouter([
   },
   {
     path: "/favourites/",
-    element: null
+    element: <Favourite />
   }
 ]);
 
