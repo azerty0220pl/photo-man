@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { store } from './Store';
+import { store } from './redux/Store';
 import { Provider } from 'react-redux';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import Search from './search';
