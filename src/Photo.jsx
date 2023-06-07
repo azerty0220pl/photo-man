@@ -1,6 +1,6 @@
 const Photo = ({ photo }) => {
     return (
-        <div>
+        <div className="card">
             <img src={photo.urls.full} />
         </div>
     );
