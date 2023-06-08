@@ -60,7 +60,7 @@ const Favourite = () => {
         }
 
         return aux.map((x, i) => {
-            if (!filter.length > 0 | x.description.includes(filter))
+            if (!filter.length > 0 || x.description.includes(filter))
                 return <Photo current="1" photo={x} key={i} />
         });
     }

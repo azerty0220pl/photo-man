@@ -7,6 +7,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import saveAs from "file-saver";
 
 
 const Photo = ({ photo, current }) => {
@@ -20,12 +21,12 @@ const Photo = ({ photo, current }) => {
                     photo.saved ?
                         <StarIcon className="star" onClick={() => {
                             current === '0' ? dispatch(save(photo.id))
-                            : dispatch(remove(photo.id))
+                                : dispatch(remove(photo.id))
                         }} /> : <StarBorderIcon className="icon" onClick={() => { dispatch(save(photo.id)) }} />
                 }
                 <div className="bottom-controls">
-                    {photo.saved ? <ModeEditIcon className="icon" /> : <></>}
-                    {photo.saved ? <DownloadIcon className="icon" /> : <></>}
+                    {photo.saved && current === '1' ? <ModeEditIcon className="icon" /> : <></>}
+                    {photo.saved ? <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} /> : <></>}
                     <InfoIcon className="icon" />
                 </div>
             </div>

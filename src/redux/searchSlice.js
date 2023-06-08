@@ -69,7 +69,7 @@ export const searchPhotos = () => {
         let photos = data.map(x => {
             let res = {
                 id: x.id,
-                description: x.description,
+                description: x.description == null ? '' : x.description,
                 width: x.width,
                 height: x.height,
                 likes: x.likes,
