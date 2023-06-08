@@ -11,7 +11,7 @@ const Search = () => {
             <div className="gallery">
                 {
                     getPhotos.map((x, i) => {
-                        return <Photo photo={x} key={i} />
+                        return <Photo current="0" photo={x} key={i} />
                     })
                 }
             </div>

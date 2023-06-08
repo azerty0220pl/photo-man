@@ -9,20 +9,24 @@ import InfoIcon from '@mui/icons-material/Info';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 
 
-const Photo = ({ photo }) => {
+const Photo = ({ photo, current }) => {
     const dispatch = useDispatch();
 
     return (
         <div className="card">
             <img className="image" src={photo.urls.full} />
             <div className="controls">
-                <div className="top-controls">
-                    {photo.saved ? <StarIcon onClick={() => {dispatch(remove(photo.id))}} /> : <StarBorderIcon onClick={() => {dispatch(save(photo.id))}} />}
-                </div>
+                {
+                    photo.saved ?
+                        <StarIcon className="star" onClick={() => {
+                            current === '0' ? dispatch(save(photo.id))
+                            : dispatch(remove(photo.id))
+                        }} /> : <StarBorderIcon className="icon" onClick={() => { dispatch(save(photo.id)) }} />
+                }
                 <div className="bottom-controls">
-                    <InfoIcon />
-                    { photo.saved ? <DownloadIcon /> : <></> }
-                    { photo.saved ? <ModeEditIcon /> : <></> }
+                    {photo.saved ? <ModeEditIcon className="icon" /> : <></>}
+                    {photo.saved ? <DownloadIcon className="icon" /> : <></>}
+                    <InfoIcon className="icon" />
                 </div>
             </div>
             <div className="data">

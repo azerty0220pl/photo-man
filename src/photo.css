@@ -67,9 +67,33 @@
 
 .controls {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
     top: 0;
-    left: 0;
-    z-index: 20;
+    right: 0;
     width: 100%;
     height: 100%;
+    padding: 0.5rem;
+}
+
+.icon {
+    display: none !important;
+    color: grey;
+    font-size: 1rem !important;
+}
+
+.star {
+    display: none!important;
+    color: orange;
+    font-size: 1rem !important;
+}
+
+.card:hover .icon {
+    display: inline-block !important;
+}
+
+.card:hover .star {
+    display: inline-block !important;
 }

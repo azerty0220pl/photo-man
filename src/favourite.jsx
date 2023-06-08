@@ -15,7 +15,7 @@ const Favourite = () => {
                         photos.map((x, i) => {
                             if (filter.length > 0 && !x.description.includes(filter))
                                 return <></>
-                            return <Photo photo={x} key={i} />
+                            return <Photo current="1" photo={x} key={i} />
                         })
                 }
             </div>
