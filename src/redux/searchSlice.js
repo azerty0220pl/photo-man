@@ -55,14 +55,13 @@ export const searchPhotos = () => {
             await fetch("https://api.unsplash.com/search/photos?query=" + state.search.searched, { method: 'GET', headers: { 'Authorization': "Client-ID " + import.meta.env.VITE_UNSPLASH_KEY } })
                 .then(async d => {
                     await d.json().then(x => {
-                        data = x;
+                        data = x.results;
                     });
                 });
 
         let local = JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values;
 
-        console.log(data);
-        let photos = data.results.map( x => {
+        let photos = data.map( x => {
             let res = {
                 id: x.id,
                 description: x.description,

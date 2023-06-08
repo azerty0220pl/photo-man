@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    photos: JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values,
+    photos: JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")),
     filter: ""
 };
 
