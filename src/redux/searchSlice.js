@@ -26,7 +26,7 @@ const searchSlice = createSlice({
             let local = JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos"));
 
             if (photo.saved) {
-                photo.date = new Date().getTime();
+                photo.date = new Date().toLocaleDateString('en-US');
                 local.push(photo);
             }
             else{

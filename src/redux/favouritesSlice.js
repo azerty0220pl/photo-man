@@ -15,6 +15,8 @@ const favouritesSlice = createSlice({
         },
         description: (state, action) => {
             state.photos.find(e => e.id === action.payload.id).description = action.payload.description;
+            
+            localStorage.setItem("photos", JSON.stringify(state.photos));
             return state;
         },
         remove: (state, action) => {

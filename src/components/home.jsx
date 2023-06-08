@@ -1,11 +1,11 @@
 import { Button, TextField, InputAdornment } from "@mui/material";
-import { searchQuery, searchPhotos } from "./redux/searchSlice";
-import { filterQuery } from "./redux/favouritesSlice";
+import { searchQuery, searchPhotos } from "../redux/searchSlice";
+import { filterQuery } from "../redux/favouritesSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
-import logo from "./photoman.svg";
+import logo from "../photoman.svg";
 import { createTheme } from "@mui/material/styles";
-import "./home.css"
+import "../css/home.css"
 
 const theme = createTheme({
     palette: {

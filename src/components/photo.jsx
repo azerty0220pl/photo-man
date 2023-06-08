@@ -1,7 +1,7 @@
-import { save } from "./redux/searchSlice";
-import { remove } from "./redux/favouritesSlice";
-import { useSelector, useDispatch } from 'react-redux';
-import "./photo.css";
+import { save } from "../redux/searchSlice";
+import { remove } from "../redux/favouritesSlice";
+import { useDispatch } from 'react-redux';
+import "../css/photo.css";
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadIcon from '@mui/icons-material/Download';
@@ -10,7 +10,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import saveAs from "file-saver";
 
 
-const Photo = ({ photo, current }) => {
+const Photo = ({ photo, current, edit }) => {
     const dispatch = useDispatch();
 
     return (
@@ -25,7 +25,7 @@ const Photo = ({ photo, current }) => {
                         }} /> : <StarBorderIcon className="icon" onClick={() => { dispatch(save(photo.id)) }} />
                 }
                 <div className="bottom-controls">
-                    {photo.saved && current === '1' ? <ModeEditIcon className="icon" /> : <></>}
+                    {photo.saved && current === '1' ? <ModeEditIcon className="icon" onClick={() => { edit(photo.id) }} /> : <></>}
                     {photo.saved ? <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} /> : <></>}
                     <InfoIcon className="icon" />
                 </div>

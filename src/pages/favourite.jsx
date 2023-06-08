@@ -1,7 +1,8 @@
-import Home from "./home";
+import Home from "../components/home";
 import { useSelector } from 'react-redux';
-import Photo from "./photo";
-import './page.css';
+import Photo from "../components/photo";
+import Modal from "../components/modal";
+import '../css/page.css';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -22,6 +23,7 @@ const Favourite = () => {
     });
 
     let [sort, setSort] = useState('none');
+    let [edit, setEdit] = useState('');
 
     const gallery = () => {
         let aux;
@@ -61,7 +63,7 @@ const Favourite = () => {
 
         return aux.map((x, i) => {
             if (!filter.length > 0 || x.description.includes(filter))
-                return <Photo current="1" photo={x} key={i} />
+                return <Photo current="1" photo={x} edit={setEdit} key={i} />
         });
     }
 
@@ -70,6 +72,11 @@ const Favourite = () => {
 
     return (
         <div>
+            {
+                edit != '' ?
+                <Modal id={edit} toggle={setEdit} />
+                : <></>
+            }
             <Home current="1" />
 
             <div className="sortBy">

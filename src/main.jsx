@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { store } from './redux/Store';
 import { Provider } from 'react-redux';
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import Search from './search';
-import Favourite from './favourite';
-import './index.css'
+import Search from './pages/search';
+import Favourite from './pages/favourite';
+import './css/index.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
