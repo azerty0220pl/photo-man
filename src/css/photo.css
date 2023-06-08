@@ -42,6 +42,14 @@
     object-fit: contain;
 }
 
+.card:hover .icon {
+    display: inline-block !important;
+}
+
+.card:hover .star {
+    display: inline-block !important;
+}
+
 .card:hover {
     width: 25%;
     min-width: 17rem;
@@ -94,10 +102,26 @@
     transition: all 1s;
 }
 
-.card:hover .icon {
+.augmented {
+    width: 25%;
+    min-width: 17rem;
+    margin: 0rem;
+    z-index: 10;
+    border: 1px solid black;
+}
+
+.augmented .data {
+    display: block;
+}
+
+.augmented .image {
+    object-fit: contain;
+}
+
+.augmented .icon {
     display: inline-block !important;
 }
 
-.card:hover .star {
+.augmented .star {
     display: inline-block !important;
 }
