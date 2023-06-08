@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const defaultState = {
-    photos: JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")),
+    photos: JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos")),
     filter: ""
 };
 
@@ -18,7 +18,11 @@ const favouritesSlice = createSlice({
             return state;
         },
         remove: (state, action) => {
-            state.photos.splice(state.photos.findIndex(e => e.id === action.payload, 1));
+            let index = state.photos.findIndex(e => e.id === action.payload);
+            state.photos[index].saved = false;
+            state.photos.splice(index, 1);
+
+            localStorage.setItem("photos", JSON.stringify(state.photos));
             return state;
         }
     }

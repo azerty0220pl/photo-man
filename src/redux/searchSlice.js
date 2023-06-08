@@ -19,18 +19,23 @@ const searchSlice = createSlice({
             return state;
         },
         save: (state, action) => {
-            let photo = state.photos.find(e => e.id === action.payload);
+            let index = state.photos.findIndex(e => e.id === action.payload)
+            let photo = state.photos[index];
             photo.saved = !photo.saved;
 
-            let local = JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values;
+            let local = JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos"));
 
-            if (photo.saved)
+            if (photo.saved) {
+                photo.date = new Date().getTime();
                 local.push(photo);
-            else
-                local.slice(local.findIndex(e => e.id === action.payload), 1);
+            }
+            else{
+                local.splice(local.findIndex(e => e.id === photo.id), 1);
+            }
 
             localStorage.setItem("photos", JSON.stringify(local));
 
+            state.photos[index] = photo;
             return state;
         }
     }
@@ -59,9 +64,9 @@ export const searchPhotos = () => {
                     });
                 });
 
-        let local = JSON.parse(localStorage.getItem("photos")) == null ? [] : JSON.parse(localStorage.getItem("photos")).values;
-
-        let photos = data.map( x => {
+        let local = JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos"));
+        
+        let photos = data.map(x => {
             let res = {
                 id: x.id,
                 description: x.description,
