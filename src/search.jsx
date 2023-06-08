@@ -1,6 +1,7 @@
 import Home from "./home";
 import { useSelector } from 'react-redux';
 import Photo from "./photo";
+import './page.css';
 
 const Search = () => {
     let getPhotos = useSelector((state) => state.search.photos)
