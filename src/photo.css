@@ -1,3 +1,75 @@
 .card {
-    max-width: 20rem;
+    position: relative;
+    background-color: white;
+    width: 20%;
+    margin: 1rem;
+    min-width: 15rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.data {
+    display: none;
+    position: absolute;
+    top: 100%;
+    margin-left: -1px;
+    padding: 0.5rem;
+    width: calc(100% + 2px);
+    border: 1px solid black;
+    border-radius: 0rem 0rem 1rem 1rem;
+    border-top: none;
+    background-color: white;
+    z-index: 10;
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    aspect-ratio: 16/9;
+}
+
+.card:hover .data {
+    display: block;
+}
+
+.card:hover .image {
+    object-fit: contain;
+}
+
+.card:hover {
+    width: 25%;
+    min-width: 17rem;
+    margin: 0rem;
+    border: 1px solid black;
+    border-radius: 1rem 1rem 0rem 0rem;
+    border-bottom: none;
+    z-index: 10;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+}
+
+.bold {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.value {
+    display: inline-block;
+    text-align: end;
+}
+
+.controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
 }
