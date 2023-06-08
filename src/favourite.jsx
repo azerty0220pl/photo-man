@@ -2,24 +2,126 @@ import Home from "./home";
 import { useSelector } from 'react-redux';
 import Photo from "./photo";
 import './page.css';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { createTheme } from "@mui/material/styles";
+import { useState } from "react";
 
 const Favourite = () => {
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#000',
+            }
+        },
+        typography: {
+            fontFamily: 'Courier New'
+        }
+    });
+
+    let [sort, setSort] = useState('none');
+
+    const gallery = () => {
+        let aux;
+        switch (sort) {
+            case 'date':
+                aux = photos.toSorted((a, b) => {
+                    if (a.date > b.date)
+                        return -1;
+                    return 1;
+                });
+                break;
+            case 'width':
+                aux = photos.toSorted((a, b) => {
+                    if (a.width > b.width)
+                        return -1;
+                    return 1;
+                });
+                break;
+            case 'height':
+                aux = photos.toSorted((a, b) => {
+                    if (a.height > b.height)
+                        return -1;
+                    return 1;
+                });
+                break;
+            case 'likes':
+                aux = photos.toSorted((a, b) => {
+                    if (a.likes > b.likes)
+                        return -1;
+                    return 1;
+                });
+                break;
+            default:
+                aux = photos;
+                break;
+        }
+
+        return aux.map((x, i) => {
+            if (!filter.length > 0 | x.description.includes(filter))
+                return <Photo current="1" photo={x} key={i} />
+        });
+    }
+
     let filter = useSelector((state) => state.favourites.filter);
     let photos = useSelector((state) => state.favourites.photos);
+
     return (
         <div>
             <Home current="1" />
+
+            <div className="sortBy">
+                <FormControl
+                    theme={theme}
+                    variant="standard"
+                    sx={{
+                        m: 1,
+                        minWidth: 120,
+                        "& .Mui-focused:after": {
+                            borderBottomColor: "#000"
+                        },
+                        "& .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root": {
+                            fontFamily: 'Courier new'
+                        },
+                        "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+                            color: '#000',
+                            fontFamily: 'Courier new'
+                        },
+                        "& .css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root": {
+                            fontFamily: 'Courier new'
+                        },
+                        "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root": {
+                            fontFamily: 'Courier new'
+                        }
+                    }}>
+                    <InputLabel
+                        theme={theme}
+                        id="sort">Sort by</InputLabel>
+                    <Select
+                        theme={theme}
+                        labelId="sort"
+                        label="sortBy"
+                        value={sort}
+                        onChange={e => { setSort(e.target.value) }}
+                    >
+                        <MenuItem theme={theme} value="none">None</MenuItem>
+                        <MenuItem theme={theme} value='date'>Added</MenuItem>
+                        <MenuItem theme={theme} value='width'>Width</MenuItem>
+                        <MenuItem theme={theme} value='height'>Height</MenuItem>
+                        <MenuItem theme={theme} value="likes">Likes</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+
             <div className="gallery">
                 {
                     photos == null ? <></> :
-                        photos.map((x, i) => {
-                            if (filter.length > 0 && !x.description.includes(filter))
-                                return <></>
-                            return <Photo current="1" photo={x} key={i} />
-                        })
+                        gallery()
                 }
             </div>
-        </div>
+        </div >
     );
 }
 

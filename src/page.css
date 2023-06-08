@@ -4,3 +4,9 @@
     justify-content: space-around;
     margin: 4rem 2rem;
 }
+
+.sortBy {
+    display: flex;
+    margin: 1rem;
+    justify-content: end;
+}
