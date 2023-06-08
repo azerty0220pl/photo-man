@@ -1,8 +1,9 @@
 {
   "name": "photo-man",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://azerty0220pl.github.io/photo-man/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
