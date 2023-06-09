@@ -8,15 +8,13 @@ import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import saveAs from "file-saver";
-import { useState } from "react";
 
 
 const Photo = ({ photo, current, edit }) => {
     const dispatch = useDispatch();
-    let [augmented, setAugmented] = useState('');
 
     return (
-        <div className={"card " + augmented} onClick={() => {augmented === '' ? setAugmented('augmented') : setAugmented('')}}>
+        <div className="card ">
             <img className="image" src={photo.urls.full} />
             <div className="controls">
                 {

@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../photoman.svg";
 import { createTheme } from "@mui/material/styles";
-import "../css/home.css"
+import "../css/home.css";
+import { NavLink } from 'react-router-dom';
 
 const theme = createTheme({
     palette: {
@@ -29,7 +30,7 @@ const Home = ({ current }) => {
     let plh;
 
     if (current === '0') {
-        lnk = '/favourites/';
+        lnk = 'favourites';
         btn = 'Go to favourites';
         ocg = (e) => { dispatch(searchQuery(e.target.value)) };
         cur = useSelector((state) => state.search.searched);
@@ -48,7 +49,7 @@ const Home = ({ current }) => {
     return (
         <div className="home">
             <img className="logo" src={logo} />
-            <Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }} href={lnk}>{btn}</Button>
+            <NavLink to={lnk}><Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }}>{btn}</Button></NavLink>
             <TextField
                 className="input"
                 onChange={e => { ocg(e) }}
