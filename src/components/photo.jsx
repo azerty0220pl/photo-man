@@ -15,7 +15,7 @@ const Photo = ({ photo, current, edit }) => {
 
     return (
         <div className="card ">
-            <img className="image" src={photo.urls.full} />
+            <img className="image" src={photo.urls.thumb} />
             <div className="controls">
                 {
                     photo.saved ?

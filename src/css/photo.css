@@ -51,9 +51,7 @@
 }
 
 .card:hover {
-    width: 25%;
-    min-width: 17rem;
-    margin: 0rem;
+    margin: 0rem 1rem;
     z-index: 10;
     border: 1px solid black;
 }
@@ -100,28 +98,4 @@
     color: orange;
     font-size: 1rem !important;
     transition: all 1s;
-}
-
-.augmented {
-    width: 25%;
-    min-width: 17rem;
-    margin: 0rem;
-    z-index: 10;
-    border: 1px solid black;
-}
-
-.augmented .data {
-    display: block;
-}
-
-.augmented .image {
-    object-fit: contain;
-}
-
-.augmented .icon {
-    display: inline-block !important;
-}
-
-.augmented .star {
-    display: inline-block !important;
 }
