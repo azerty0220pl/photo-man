@@ -34,14 +34,14 @@ const Home = ({ current }) => {
         btn = 'Go to favourites';
         ocg = (e) => { dispatch(searchQuery(e.target.value)) };
         cur = useSelector((state) => state.search.searched);
-        act = () => { dispatch(searchPhotos()) };
+        act = (page) => { dispatch(searchPhotos(page)) };
         plh = "Search new photos...";
     } else {
         lnk = '/';
         btn = 'Search for new photos';
         ocg = (e) => { dispatch(filterQuery(e.target.value)) };
         cur = useSelector((state) => state.favourites.filter);
-        act = () => {};
+        act = () => { };
         plh = "Search in favourites...";
     }
 
@@ -54,7 +54,7 @@ const Home = ({ current }) => {
                 className="input"
                 onChange={e => { ocg(e) }}
                 value={cur}
-                onKeyDown={(e) => { if (e.key === "Enter") act() }}
+                onKeyDown={(e) => { if (e.key === "Enter") act(1) }}
                 theme={theme}
                 id="input-with-icon-textfield"
                 placeholder={plh}

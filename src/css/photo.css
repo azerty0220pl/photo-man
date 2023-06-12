@@ -1,6 +1,6 @@
 .card {
     position: relative;
-    transition: all 1s;
+    transition: all 0.5s;
     background-color: white;
     width: 20%;
     margin: 1rem;

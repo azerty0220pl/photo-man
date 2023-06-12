@@ -10,3 +10,8 @@
     margin: 1rem;
     justify-content: end;
 }
+
+ul {
+    margin: 2rem auto !important;
+    width: fit-content;
+}

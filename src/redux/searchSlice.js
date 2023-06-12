@@ -43,21 +43,21 @@ const searchSlice = createSlice({
 
 export const { searchQuery, loadPhotos, save } = searchSlice.actions;
 
-export const searchPhotos = () => {
+export const searchPhotos = (page) => {
     return async (dispatch, getState) => {
         let state = getState();
 
         let data;
 
         if (state.search.searched === "")
-            await fetch("https://api.unsplash.com/photos/random?count=10", { method: 'GET', headers: { 'Authorization': "Client-ID " + import.meta.env.VITE_UNSPLASH_KEY } })
+            await fetch("https://api.unsplash.com/photos/random?count=30&page=" + page, { method: 'GET', headers: { 'Authorization': "Client-ID " + import.meta.env.VITE_UNSPLASH_KEY } })
                 .then(async d => {
                     await d.json().then(x => {
                         data = x;
                     });
                 });
         else
-            await fetch("https://api.unsplash.com/search/photos?query=" + state.search.searched, { method: 'GET', headers: { 'Authorization': "Client-ID " + import.meta.env.VITE_UNSPLASH_KEY } })
+            await fetch("https://api.unsplash.com/search/photos?query=" + state.search.searched + "&page=" + page, { method: 'GET', headers: { 'Authorization': "Client-ID " + import.meta.env.VITE_UNSPLASH_KEY } })
                 .then(async d => {
                     await d.json().then(x => {
                         data = x.results;
