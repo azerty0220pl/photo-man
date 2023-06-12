@@ -9,6 +9,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { createTheme } from "@mui/material/styles";
 import { useState } from "react";
+import { Pagination } from "@mui/material";
 
 const Favourite = () => {
     const theme = createTheme({
@@ -24,6 +25,11 @@ const Favourite = () => {
 
     let [sort, setSort] = useState('none');
     let [edit, setEdit] = useState('');
+
+    let filter = useSelector((state) => state.favourites.filter);
+    let photos = useSelector((state) => state.favourites.photos);
+    let [page, setPage] = useState(1);
+
 
     const gallery = () => {
         let aux;
@@ -61,14 +67,14 @@ const Favourite = () => {
                 break;
         }
 
+        let index = page * 10;
+        aux = aux.slice(index - 10, index);
+
         return aux.map((x, i) => {
             if (!filter.length > 0 || x.description.includes(filter))
                 return <Photo current="1" photo={x} edit={setEdit} key={i} />
         });
     }
-
-    let filter = useSelector((state) => state.favourites.filter);
-    let photos = useSelector((state) => state.favourites.photos);
 
     return (
         <div>
@@ -78,7 +84,22 @@ const Favourite = () => {
                 : <></>
             }
             <Home current="1" />
-
+            {
+                photos.length > 0 ? 
+                <Pagination
+                count={Math.floor(photos.length / 10) + 1}
+                page={page}
+                onChange={(event, value) => {
+                    setPage(value)
+                }}
+                sx={{
+                    "& .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root": {
+                        fontFamily: "Courier New"
+                    }
+                }}
+                />
+                : <></>
+            }
             <div className="sortBy">
                 <FormControl
                     theme={theme}
