@@ -77,7 +77,8 @@ export const searchPhotos = (page) => {
                     full: x.urls.full,
                     thumb: x.urls.thumb
                 },
-                saved: local.filter(e => e.id === x.id).length > 0
+                saved: local.filter(e => e.id === x.id).length > 0,
+                tags: x.tags
             }
 
             return res;
