@@ -29,7 +29,7 @@ const searchSlice = createSlice({
                 photo.date = new Date().toLocaleDateString('en-US');
                 local.push(photo);
             }
-            else{
+            else {
                 local.splice(local.findIndex(e => e.id === photo.id), 1);
             }
 
@@ -69,7 +69,7 @@ export const searchPhotos = (page) => {
                 });
 
         let local = JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos"));
-        
+
         let photos = data.map(x => {
             let res = {
                 id: x.id,
@@ -82,7 +82,7 @@ export const searchPhotos = (page) => {
                     thumb: x.urls.thumb
                 },
                 saved: local.filter(e => e.id === x.id).length > 0,
-                tags: x.tags
+                tags: x.tags.filter(x => x.type == "landing_page").map(x => { return x.title; })
             }
 
             return res;
