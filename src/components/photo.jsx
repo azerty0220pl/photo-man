@@ -8,6 +8,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import saveAs from "file-saver";
+import { Chip } from "@mui/material";
 
 
 const Photo = ({ photo, current, edit }) => {
@@ -47,6 +48,11 @@ const Photo = ({ photo, current, edit }) => {
                             <p className="value">{photo.date}</p>
                         </div>
                         : <></>
+                }
+                {
+                    photo.tags.map((tag, index) => {
+                        return <Chip key={index} label={tag} />
+                    })
                 }
             </div>
         </div>

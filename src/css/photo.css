@@ -99,3 +99,8 @@
     font-size: 1rem !important;
     transition: all 1s;
 }
+
+.MuiChip-root {
+    font-family: 'Courier New' !important;
+    margin-right: 1rem;
+}

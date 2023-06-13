@@ -66,7 +66,7 @@ const Home = ({ current }) => {
                         <InputAdornment position="start">
                             <SearchIcon theme={theme} />
                         </InputAdornment>
-                    ),
+                    )
                 }}
                 variant="standard"
                 sx={{
