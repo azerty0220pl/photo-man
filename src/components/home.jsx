@@ -1,6 +1,6 @@
 import { Button, TextField, InputAdornment } from "@mui/material";
-import { searchQuery, searchPhotos } from "../redux/searchSlice";
-import { filterQuery } from "../redux/favouritesSlice";
+import { searchQuery, searchPhotos, resetSearch } from "../redux/searchSlice";
+import { filterQuery, resetFavourite } from "../redux/favouritesSlice";
 import { useSelector, useDispatch } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from "../photoman.svg";
@@ -23,6 +23,7 @@ const Home = ({ current }) => {
     const dispatch = useDispatch();
 
     let lnk;
+    let ocl;
     let btn;
     let ocg;
     let cur;
@@ -31,6 +32,7 @@ const Home = ({ current }) => {
 
     if (current === '0') {
         lnk = 'favourites';
+        ocl = () => { dispatch(resetFavourite()); }
         btn = 'Go to favourites';
         ocg = (e) => { dispatch(searchQuery(e.target.value)) };
         cur = useSelector((state) => state.search.searched);
@@ -38,6 +40,7 @@ const Home = ({ current }) => {
         plh = "Search new photos...";
     } else {
         lnk = '/';
+        ocl = () => { dispatch(resetSearch()); }
         btn = 'Search for new photos';
         ocg = (e) => { dispatch(filterQuery(e.target.value)) };
         cur = useSelector((state) => state.favourites.filter);
@@ -49,7 +52,7 @@ const Home = ({ current }) => {
     return (
         <div className="home">
             <img className="logo" src={logo} />
-            <NavLink to={lnk}><Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }}>{btn}</Button></NavLink>
+            <NavLink to={lnk}><Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }} onClick={ocl()}>{btn}</Button></NavLink>
             <TextField
                 className="input"
                 onChange={e => { ocg(e) }}

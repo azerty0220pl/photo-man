@@ -26,10 +26,16 @@ const favouritesSlice = createSlice({
 
             localStorage.setItem("photos", JSON.stringify(state.photos));
             return state;
+        },
+        resetFavourite: (state, action) => {
+            return {
+                photos: JSON.parse(localStorage.getItem("photos")) == null || JSON.parse(localStorage.getItem("photos")) == '' ? [] : JSON.parse(localStorage.getItem("photos")),
+                filter: ""
+            };
         }
     }
 });
 
-export const { filterQuery, description, remove } = favouritesSlice.actions;
+export const { filterQuery, description, remove, resetFavourite } = favouritesSlice.actions;
 
 export default favouritesSlice.reducer;

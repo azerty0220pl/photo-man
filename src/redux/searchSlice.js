@@ -37,11 +37,15 @@ const searchSlice = createSlice({
 
             state.photos[index] = photo;
             return state;
+        },
+        resetSearch: (state, action) => {
+            return defaultState;
         }
+
     }
 }, applyMiddleware(thunk));
 
-export const { searchQuery, loadPhotos, save } = searchSlice.actions;
+export const { searchQuery, loadPhotos, save, resetSearch } = searchSlice.actions;
 
 export const searchPhotos = (page) => {
     return async (dispatch, getState) => {

@@ -25,11 +25,10 @@ const Favourite = () => {
 
     let [sort, setSort] = useState('none');
     let [edit, setEdit] = useState('');
+    let [page, setPage] = useState(1);
 
     let filter = useSelector((state) => state.favourites.filter);
     let photos = useSelector((state) => state.favourites.photos);
-    let [page, setPage] = useState(1);
-
 
     const gallery = () => {
         let aux;
