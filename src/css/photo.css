@@ -94,7 +94,7 @@
 }
 
 .star {
-    display: none!important;
+    display: none !important;
     color: orange;
     font-size: 1rem !important;
     transition: all 1s;
