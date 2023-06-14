@@ -89,14 +89,14 @@
 .icon {
     display: none !important;
     color: grey;
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
     transition: all 1s;
 }
 
 .star {
     display: none !important;
     color: orange;
-    font-size: 1rem !important;
+    font-size: 1.5rem !important;
     transition: all 1s;
 }
 
