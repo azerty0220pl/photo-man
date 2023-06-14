@@ -1,17 +1,16 @@
 import { Chip } from "@mui/material";
 import { useState } from "react";
 
-const Tag = ({ name,  }) => {
+const Tag = ({ name, add, remove }) => {
     let [state, setState] = useState("outlined");
 
     return <Chip label={name} variant={state} onClick={() => {
-        
-        console.log(state)
-
         if (state === 'outlined') {
             setState("filled");
+            add(name);
         } else {
             setState('outlined');
+            remove(name);
         }
     }} />
 }

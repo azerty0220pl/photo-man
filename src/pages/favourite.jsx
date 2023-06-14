@@ -9,7 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { createTheme } from "@mui/material/styles";
 import { useState } from "react";
-import { Chip, Pagination } from "@mui/material";
+import { Pagination } from "@mui/material";
+import Tag from "../components/tag";
 
 const Favourite = () => {
     const theme = createTheme({
@@ -27,6 +28,17 @@ const Favourite = () => {
     let [edit, setEdit] = useState('');
     let [page, setPage] = useState(1);
     let [tags, setTags] = useState([]);
+
+    const add = (x) => {
+        setTags([...tags, x]);
+    };
+
+    const remove = (x) => {
+        let aux = [...tags];
+        aux.splice(tags.indexOf(x), 1);
+
+        setTags(aux);
+    }
 
     let filter = useSelector((state) => state.favourites.filter);
     let photos = useSelector((state) => state.favourites.photos);
@@ -71,7 +83,7 @@ const Favourite = () => {
         aux = aux.slice(index - 10, index);
 
         if(tags.length > 0)
-            aux.filter(e => {
+            aux = aux.filter(e => {
                 return e.tags.filter(t => tags.includes(t)).length > 0;
         });
 
@@ -94,7 +106,7 @@ const Favourite = () => {
                     photos.reduce((prev, cur) => {
                         return prev.concat(cur.tags.filter(e => !prev.includes(e)));
                     }, []).map(e => {
-                        return <Chip label={e} />
+                        return <Tag name={e} add={add} remove={remove} />
                     })
                 }
             </div>
