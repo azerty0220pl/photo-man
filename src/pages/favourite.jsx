@@ -11,6 +11,7 @@ import { createTheme } from "@mui/material/styles";
 import { useState } from "react";
 import { Pagination } from "@mui/material";
 import Tag from "../components/tag";
+import Alerts from "../components/alerts";
 
 const Favourite = () => {
     const theme = createTheme({
@@ -28,6 +29,21 @@ const Favourite = () => {
     let [big, setBig] = useState('');
     let [page, setPage] = useState(1);
     let [tags, setTags] = useState([]);
+    let [show, setShow] = useState('none');
+
+    let timeId = setTimeout(() => {
+        setShow('none');
+    });
+
+    const trigger = (x) => {
+        setShow(x);
+
+        clearTimeout(timeId);
+
+        timeId = setTimeout(() => {
+            setShow('none');
+        }, 3000);
+    };
 
     const add = (x) => {
         setTags([...tags, x]);
@@ -97,9 +113,12 @@ const Favourite = () => {
         <div>
             {
                 big !== '' ?
-                <Modal img={big} toggle={setBig} current='1' />
+                <Modal img={big} toggle={setBig} current='1' trigger={trigger} />
                 : <></>
             }
+
+            <Alerts alert={show} />
+
             <Home current="1" />
             <div className="tags">
                 {

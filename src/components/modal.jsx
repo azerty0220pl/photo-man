@@ -14,7 +14,7 @@ import { save } from "../redux/searchSlice"
 import { remove } from "../redux/favouritesSlice";
 import CloseIcon from '@mui/icons-material/Close';
 
-const Modal = ({ img, toggle, current }) => {
+const Modal = ({ img, toggle, current, trigger }) => {
     const theme = createTheme({
         palette: {
             primary: {
@@ -43,10 +43,12 @@ const Modal = ({ img, toggle, current }) => {
     const handleSave = () => {
         if (current === '0'){
             toggle('');
+            img.saved ? trigger("removed") : trigger("saved");
             dispatch(save(img.id));
         }
         else {
             toggle('');
+            trigger('removed')
             dispatch(remove(img.id));
         }
     }

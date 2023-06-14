@@ -6,6 +6,7 @@ import { Pagination } from "@mui/material";
 import { searchPhotos } from "../redux/searchSlice";
 import { useState } from "react";
 import Modal from "../components/modal";
+import Alerts from "../components/alerts";
 
 const Search = () => {
     let getPhotos = useSelector((state) => state.search.photos);
@@ -13,14 +14,31 @@ const Search = () => {
 
     let [page, setPage] = useState(1);
     let [big, setBig] = useState('');
+    let [show, setShow] = useState('none');
+
+    let timeId = setTimeout(() => {});
+
+    const trigger = (x) => {
+        setShow(x);
+
+        clearTimeout(timeId);
+
+        timeId = setTimeout(() => {
+            setShow('none');
+        }, 3000);
+    };
+
 
     return (
         <div>
             {
                 big !== '' ?
-                <Modal img={big} toggle={setBig} current='0' />
+                <Modal img={big} toggle={setBig} current='0' trigger={trigger} />
                 : <></>
             }
+            
+            <Alerts alert={show} />
+
             <Home current="0" />
             {
                 getPhotos.length > 0 ? 
