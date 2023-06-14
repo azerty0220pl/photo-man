@@ -6,16 +6,14 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadIcon from '@mui/icons-material/Download';
 import InfoIcon from '@mui/icons-material/Info';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import saveAs from "file-saver";
-import { Chip } from "@mui/material";
 
 
-const Photo = ({ photo, current, edit }) => {
+const Photo = ({ photo, current, toggle }) => {
     const dispatch = useDispatch();
 
     return (
-        <div className="card ">
+        <div className="card " onClick={() => { toggle(photo) }}>
             <img className="image" src={photo.urls.thumb} />
             <div className="controls">
                 {
@@ -29,30 +27,6 @@ const Photo = ({ photo, current, edit }) => {
                     <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} />
                     <InfoIcon className="icon" />
                 </div>
-            </div>
-            <div className="data">
-                <p>{photo.description}</p>
-                <div className="row">
-                    <p className="bold">Size:</p>
-                    <p className="value">{photo.width + 'x' + photo.height + 'px'}</p>
-                </div>
-                <div className="row">
-                    <p className="bold">Likes:</p>
-                    <p className="value">{photo.likes}</p>
-                </div>
-                {
-                    photo.saved ?
-                        <div className="row">
-                            <p className="bold">{photo.saved ? "Added:" : "URL:"}</p>
-                            <p className="value">{photo.date}</p>
-                        </div>
-                        : <></>
-                }
-                {
-                    photo.tags.map((tag, index) => {
-                        return <Chip key={index} label={tag} />
-                    })
-                }
             </div>
         </div>
     );

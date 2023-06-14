@@ -10,21 +10,6 @@
     align-items: center;
 }
 
-.data {
-    display: none;
-    position: absolute;
-    top: 100%;
-    margin-left: -1px;
-    padding: 0.5rem;
-    width: calc(100% + 2px);
-    border: 1px solid black;
-    border-radius: 0rem 0rem 1rem 1rem;
-    border-top: none;
-    background-color: white;
-    z-index: 10;
-    transition: all 1s;
-}
-
 .image {
     object-fit: cover;
     width: 100%;
@@ -32,10 +17,6 @@
     border-radius: 1rem;
     aspect-ratio: 16/9;
     transition: all 1s;
-}
-
-.card:hover .data {
-    display: block;
 }
 
 .card:hover .image {
@@ -48,28 +29,6 @@
 
 .card:hover .star {
     display: inline-block !important;
-}
-
-.card:hover {
-    margin: 0rem 1rem;
-    z-index: 10;
-    border: 1px solid black;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    overflow-wrap: break-word;
-}
-
-.bold {
-    display: inline-block;
-    font-weight: bold;
-}
-
-.value {
-    display: inline-block;
-    text-align: end;
 }
 
 .controls {

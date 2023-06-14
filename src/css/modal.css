@@ -1,13 +1,19 @@
 .modal {
     background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     z-index: 30;
-    justify-items: center;
-    vertical-align: middle;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img {
+    height: 50%;
 }
 
 .description {
@@ -22,6 +28,32 @@
 .description div {
     width: 100%;
 }
+
+.data {
+    width: 75%;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    margin-left: -1px;
+    padding: 2rem;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    overflow-wrap: break-word;
+}
+
+.bold {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.value {
+    display: inline-block;
+    text-align: end;
+}
+
 
 @media only screen and (min-width: 992px) {
     .description {
