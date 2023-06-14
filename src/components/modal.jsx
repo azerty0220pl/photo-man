@@ -37,11 +37,11 @@ const Modal = ({ img, toggle }) => {
                                     value={des}
                                     onKeyDown={(e) => {
                                         if (e.key === "Enter" || e.key === "Escape")
-                                            toggle('');
+                                            setEditing(false);
                                     }}
                                     onChange={
                                         (e) => {
-                                            dispatch(description({ id: id, description: e.target.value }));
+                                            dispatch(description({ id: img.id, description: e.target.value }));
                                         }
                                     }
                                     inputRef={input => input && input.focus()}
@@ -67,9 +67,11 @@ const Modal = ({ img, toggle }) => {
                                     }}
                                 />
                                 :
-                                <p>{img.description}</p>
+                                <p>{des}</p>
                         }
-                        <ModeEditIcon className="modal-icon" onClick={() => { setEditing(!editing) }} />
+                        {
+                            img.saved ? <ModeEditIcon className="modal-icon" onClick={() => { setEditing(!editing) }} /> : <></>
+                        }
                     </div>
 
                     <div className="row">
