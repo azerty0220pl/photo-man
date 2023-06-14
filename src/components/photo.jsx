@@ -27,7 +27,7 @@ const Photo = ({ photo, current, edit }) => {
                 }
                 <div className="bottom-controls">
                     {photo.saved && current === '1' ? <ModeEditIcon className="icon" onClick={() => { edit(photo.id) }} /> : <></>}
-                    {photo.saved ? <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} /> : <></>}
+                    <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} />
                     <InfoIcon className="icon" />
                 </div>
             </div>
