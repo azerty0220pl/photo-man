@@ -25,74 +25,75 @@ const Modal = ({ img, toggle }) => {
     let [editing, setEditing] = useState(false);
 
     return (
-        <div className="modal" onClick={() => { toggle('') }}>
-            <img className="img" src={img.urls.full} />
-            <div className="data">
-                <div className="row">
-                    {
-                        editing ?
-                            <TextField
-                                className="description"
-                                value={des}
-                                onKeyDown={(e) => {
-                                    if (e.key === "Enter" || e.key === "Escape")
-                                        toggle('');
-                                }}
-                                onChange={
-                                    (e) => {
-                                        dispatch(description({ id: id, description: e.target.value }));
+        <div className="modal">
+            <div className="modal-background" onClick={() => { toggle('') }}></div>
+                <img className="img" src={img.urls.full} />
+                <div className="data">
+                    <div className="row">
+                        {
+                            editing ?
+                                <TextField
+                                    className="description"
+                                    value={des}
+                                    onKeyDown={(e) => {
+                                        if (e.key === "Enter" || e.key === "Escape")
+                                            toggle('');
+                                    }}
+                                    onChange={
+                                        (e) => {
+                                            dispatch(description({ id: id, description: e.target.value }));
+                                        }
                                     }
-                                }
-                                inputRef={input => input && input.focus()}
-                                theme={theme}
-                                variant="filled"
-                                label="Description"
-                                sx={{
-                                    "& .css-1ff8729-MuiInputBase-root-MuiFilledInput-root:after": {
-                                        borderBottomColor: "#000"
-                                    },
-                                    "& .css-10botns-MuiInputBase-input-MuiFilledInput-input": {
-                                        fontFamily: 'Courier New'
-                                    },
-                                    "& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root": {
-                                        fontFamily: 'Courier New'
-                                    },
-                                    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
-                                        color: '#000'
-                                    },
-                                    "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root": {
-                                        fontFamily: 'Courier New'
-                                    }
-                                }}
-                            />
-                            :
-                            <p>{img.description}</p>
-                    }
-                    <ModeEditIcon onClick={() => { setEditing(!editing) }} />
-                </div>
+                                    inputRef={input => input && input.focus()}
+                                    theme={theme}
+                                    variant="filled"
+                                    label="Description"
+                                    sx={{
+                                        "& .css-1ff8729-MuiInputBase-root-MuiFilledInput-root:after": {
+                                            borderBottomColor: "#000"
+                                        },
+                                        "& .css-10botns-MuiInputBase-input-MuiFilledInput-input": {
+                                            fontFamily: 'Courier New'
+                                        },
+                                        "& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root": {
+                                            fontFamily: 'Courier New'
+                                        },
+                                        "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+                                            color: '#000'
+                                        },
+                                        "& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root": {
+                                            fontFamily: 'Courier New'
+                                        }
+                                    }}
+                                />
+                                :
+                                <p>{img.description}</p>
+                        }
+                        <ModeEditIcon className="modal-icon" onClick={() => { setEditing(!editing) }} />
+                    </div>
 
-                <div className="row">
-                    <p className="bold">Size:</p>
-                    <p className="value">{img.width + 'x' + img.height + 'px'}</p>
+                    <div className="row">
+                        <p className="bold">Size:</p>
+                        <p className="value">{img.width + 'x' + img.height + 'px'}</p>
+                    </div>
+                    <div className="row">
+                        <p className="bold">Likes:</p>
+                        <p className="value">{img.likes}</p>
+                    </div>
+                    {
+                        img.saved ?
+                            <div className="row">
+                                <p className="bold">{img.saved ? "Added:" : "URL:"}</p>
+                                <p className="value">{img.date}</p>
+                            </div>
+                            : <></>
+                    }
+                    {
+                        img.tags.map((tag, index) => {
+                            return <Chip key={index} label={tag} />
+                        })
+                    }
                 </div>
-                <div className="row">
-                    <p className="bold">Likes:</p>
-                    <p className="value">{img.likes}</p>
-                </div>
-                {
-                    img.saved ?
-                        <div className="row">
-                            <p className="bold">{img.saved ? "Added:" : "URL:"}</p>
-                            <p className="value">{img.date}</p>
-                        </div>
-                        : <></>
-                }
-                {
-                    img.tags.map((tag, index) => {
-                        return <Chip key={index} label={tag} />
-                    })
-                }
-            </div>
         </div>
     );
 }
