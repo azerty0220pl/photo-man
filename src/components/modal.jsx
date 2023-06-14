@@ -21,7 +21,7 @@ const Modal = ({ img, toggle }) => {
 
     const dispatch = useDispatch();
     let index = useSelector(state => state.favourites.photos.findIndex(x => x.id == img.id));
-    let des = useSelector(state => state.favourites.photos[index].description);
+    let des = img.saved ? useSelector(state => state.favourites.photos[index].description) : img.description;
     let [editing, setEditing] = useState(false);
 
     return (

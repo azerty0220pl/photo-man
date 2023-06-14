@@ -5,14 +5,22 @@ import '../css/page.css';
 import { Pagination } from "@mui/material";
 import { searchPhotos } from "../redux/searchSlice";
 import { useState } from "react";
+import Modal from "../components/modal";
 
 const Search = () => {
     let getPhotos = useSelector((state) => state.search.photos);
     let dispatch = useDispatch();
+
     let [page, setPage] = useState(1);
+    let [big, setBig] = useState('');
 
     return (
         <div>
+            {
+                big !== '' ?
+                <Modal img={big} toggle={setBig} />
+                : <></>
+            }
             <Home current="0" />
             {
                 getPhotos.length > 0 ? 
@@ -34,7 +42,7 @@ const Search = () => {
             <div className="gallery">
                 {
                     getPhotos.map((x, i) => {
-                        return <Photo current="0" photo={x} key={i} />
+                        return <Photo current="0" photo={x} key={i} toggle={setBig} />
                     })
                 }
             </div>
