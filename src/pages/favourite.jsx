@@ -98,10 +98,10 @@ const Favourite = () => {
         let index = page * 10;
         aux = aux.slice(index - 10, index);
 
-        if(tags.length > 0)
+        if (tags.length > 0)
             aux = aux.filter(e => {
                 return e.tags.filter(t => tags.includes(t)).length > 0;
-        });
+            });
 
         return aux.map((x, i) => {
             if (!filter.length > 0 || x.description.includes(filter))
@@ -113,8 +113,8 @@ const Favourite = () => {
         <div>
             {
                 big !== '' ?
-                <Modal img={big} toggle={setBig} current='1' trigger={trigger} />
-                : <></>
+                    <Modal img={big} toggle={setBig} current='1' trigger={trigger} />
+                    : <></>
             }
 
             <Alerts alert={show} />
@@ -128,66 +128,66 @@ const Favourite = () => {
                         return <Tag name={e} add={add} remove={remove} />
                     })
                 }
+
+                <div className="sortBy">
+                    <FormControl
+                        theme={theme}
+                        variant="standard"
+                        sx={{
+                            m: 1,
+                            minWidth: 120,
+                            "& .Mui-focused:after": {
+                                borderBottomColor: "#000"
+                            },
+                            "& .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root": {
+                                fontFamily: 'Courier new'
+                            },
+                            "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
+                                color: '#000',
+                                fontFamily: 'Courier new'
+                            },
+                            "& .css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root": {
+                                fontFamily: 'Courier new'
+                            },
+                            "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root": {
+                                fontFamily: 'Courier new'
+                            }
+                        }}>
+                        <InputLabel
+                            theme={theme}
+                            id="sort">Sort by</InputLabel>
+                        <Select
+                            theme={theme}
+                            labelId="sort"
+                            label="sortBy"
+                            value={sort}
+                            onChange={e => { setSort(e.target.value) }}
+                        >
+                            <MenuItem theme={theme} value="none">None</MenuItem>
+                            <MenuItem theme={theme} value='date'>Added</MenuItem>
+                            <MenuItem theme={theme} value='width'>Width</MenuItem>
+                            <MenuItem theme={theme} value='height'>Height</MenuItem>
+                            <MenuItem theme={theme} value="likes">Likes</MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
             </div>
             {
-                photos.length > 0 ? 
-                <Pagination
-                count={Math.floor(photos.length / 10) + 1}
-                page={page}
-                onChange={(event, value) => {
-                    setPage(value)
-                }}
-                sx={{
-                    "& .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root": {
-                        fontFamily: "Courier New"
-                    }
-                }}
-                />
-                : <></>
+                photos.length > 0 ?
+                    <Pagination
+                        count={Math.floor(photos.length / 10) + 1}
+                        page={page}
+                        onChange={(event, value) => {
+                            setPage(value)
+                        }}
+                        sx={{
+                            "& .css-yuzg60-MuiButtonBase-root-MuiPaginationItem-root": {
+                                fontFamily: "Courier New"
+                            }
+                        }}
+                    />
+                    : <></>
             }
-            <div className="sortBy">
-                <FormControl
-                    theme={theme}
-                    variant="standard"
-                    sx={{
-                        m: 1,
-                        minWidth: 120,
-                        "& .Mui-focused:after": {
-                            borderBottomColor: "#000"
-                        },
-                        "& .css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root": {
-                            fontFamily: 'Courier new'
-                        },
-                        "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused": {
-                            color: '#000',
-                            fontFamily: 'Courier new'
-                        },
-                        "& .css-m5hdmq-MuiInputBase-root-MuiInput-root-MuiSelect-root": {
-                            fontFamily: 'Courier new'
-                        },
-                        "& .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root": {
-                            fontFamily: 'Courier new'
-                        }
-                    }}>
-                    <InputLabel
-                        theme={theme}
-                        id="sort">Sort by</InputLabel>
-                    <Select
-                        theme={theme}
-                        labelId="sort"
-                        label="sortBy"
-                        value={sort}
-                        onChange={e => { setSort(e.target.value) }}
-                    >
-                        <MenuItem theme={theme} value="none">None</MenuItem>
-                        <MenuItem theme={theme} value='date'>Added</MenuItem>
-                        <MenuItem theme={theme} value='width'>Width</MenuItem>
-                        <MenuItem theme={theme} value='height'>Height</MenuItem>
-                        <MenuItem theme={theme} value="likes">Likes</MenuItem>
-                    </Select>
-                </FormControl>
-            </div>
-
             <div className="gallery">
                 {
                     photos == null ? <></> :
