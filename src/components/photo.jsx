@@ -26,7 +26,6 @@ const Photo = ({ photo, current, edit }) => {
                         }} /> : <StarBorderIcon className="icon" onClick={() => { dispatch(save(photo.id)) }} />
                 }
                 <div className="bottom-controls">
-                    {photo.saved && current === '1' ? <ModeEditIcon className="icon" onClick={() => { edit(photo.id) }} /> : <></>}
                     <DownloadIcon className="icon" onClick={() => { saveAs(photo.urls.full) }} />
                     <InfoIcon className="icon" />
                 </div>
