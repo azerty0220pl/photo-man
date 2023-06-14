@@ -69,8 +69,28 @@
     text-align: end;
 }
 
-.modal-icon {
-    font-size: 1.5rem;
+.controls {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.icon {
+    color: black;
+    font-size: 1.5rem !important;
+}
+
+.star {
+    color: orange;
+    font-size: 1.5rem !important;
+    transition: all 1s;
 }
 
 @media only screen and (min-width: 992px) {

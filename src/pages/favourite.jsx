@@ -97,7 +97,7 @@ const Favourite = () => {
         <div>
             {
                 big !== '' ?
-                <Modal img={big} toggle={setBig} />
+                <Modal img={big} toggle={setBig} current='1' />
                 : <></>
             }
             <Home current="1" />
