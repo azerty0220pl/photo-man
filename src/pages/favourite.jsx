@@ -1,5 +1,5 @@
 import Home from "../components/home";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Photo from "../components/photo";
 import Modal from "../components/modal";
 import '../css/page.css';

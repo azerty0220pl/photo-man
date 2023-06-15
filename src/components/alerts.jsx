@@ -1,6 +1,5 @@
 import Alert from '@mui/material/Alert';
 import "../css/alerts.css";
-import { useState } from 'react';
 
 const Alerts = ({ alert }) => {
     
