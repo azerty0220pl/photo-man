@@ -32,9 +32,7 @@ const Favourite = () => {
     let [tags, setTags] = useState([]);
     let [show, setShow] = useState('none');
 
-    let timeId = setTimeout(() => {
-        setShow('none');
-    });
+    let timeId = setTimeout(() => {});
 
     const trigger = (x) => {
         setShow(x);
