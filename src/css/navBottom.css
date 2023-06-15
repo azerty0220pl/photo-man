@@ -1,0 +1,22 @@
+@keyframes navLink {
+    from {
+        bottom: -2rem;
+    }    
+    to {
+        bottom: 2rem;
+    }
+}
+
+.navBottom {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    margin-left: -7rem;
+    width: 14rem;
+    z-index: 20;
+    animation: 0.5s 1 normal navLink;
+}
+
+.navBottom button {
+    background-color: white;
+}

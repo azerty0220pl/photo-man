@@ -1,5 +1,5 @@
 import Home from "../components/home";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Photo from "../components/photo";
 import Modal from "../components/modal";
 import '../css/page.css';
@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Pagination } from "@mui/material";
 import Tag from "../components/tag";
 import Alerts from "../components/alerts";
+import NavBottom from "../components/navBottom";
 
 const Favourite = () => {
     const theme = createTheme({
@@ -194,6 +195,7 @@ const Favourite = () => {
                         gallery()
                 }
             </div>
+            <NavBottom current='1' />
         </div >
     );
 }

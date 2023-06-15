@@ -7,6 +7,7 @@ import { searchPhotos } from "../redux/searchSlice";
 import { useState } from "react";
 import Modal from "../components/modal";
 import Alerts from "../components/alerts";
+import NavBottom from "../components/navBottom";
 
 const Search = () => {
     let getPhotos = useSelector((state) => state.search.photos);
@@ -64,6 +65,7 @@ const Search = () => {
                     })
                 }
             </div>
+            <NavBottom current='0' />
         </div>
     );
 }

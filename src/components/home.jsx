@@ -32,7 +32,7 @@ const Home = ({ current }) => {
 
     if (current === '0') {
         lnk = 'favourites';
-        ocl = () => { dispatch(resetFavourite()); }
+        ocl = () => { dispatch(resetFavourite()); };
         btn = 'Go to favourites';
         ocg = (e) => { dispatch(searchQuery(e.target.value)) };
         cur = useSelector((state) => state.search.searched);
@@ -40,7 +40,7 @@ const Home = ({ current }) => {
         plh = "Search new photos...";
     } else {
         lnk = '/';
-        ocl = () => { dispatch(resetSearch()); }
+        ocl = () => { dispatch(resetSearch()); };
         btn = 'Search for new photos';
         ocg = (e) => { dispatch(filterQuery(e.target.value)) };
         cur = useSelector((state) => state.favourites.filter);
