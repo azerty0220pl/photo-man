@@ -27,7 +27,8 @@
 }
 
 .img {
-    height: 50vh;
+    max-height: 50vh;
+    max-width: 100%;
 }
 
 .description {
