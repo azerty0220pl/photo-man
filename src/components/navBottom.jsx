@@ -44,13 +44,11 @@ const NavBottom = ({ current }) => {
     }
 
     useLayoutEffect(() => {
-        console.log("hello")
         const handleScroll = () => {
             if (getScrollPosition() > 450)
                 setVisible(true);
             else
                 setVisible(false);
-            console.log(getScrollPosition())
         }
 
         window.addEventListener('scroll', handleScroll)
