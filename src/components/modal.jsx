@@ -1,6 +1,6 @@
 import { description } from "../redux/favouritesSlice";
 import { useSelector, useDispatch } from 'react-redux';
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import '../css/modal.css';
 import { useState } from "react";
@@ -13,6 +13,7 @@ import saveAs from "file-saver";
 import { save } from "../redux/searchSlice"
 import { remove } from "../redux/favouritesSlice";
 import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
 
 const Modal = ({ img, toggle, current, trigger }) => {
     const theme = createTheme({
@@ -39,23 +40,52 @@ const Modal = ({ img, toggle, current, trigger }) => {
     }
 
     let [editing, setEditing] = useState(false);
+    let [removing, setRemoving] = useState(false);
 
     const handleSave = () => {
-        if (current === '0'){
-            toggle('');
-            img.saved ? trigger("removed") : trigger("saved");
-            dispatch(save(img.id));
+        if (current === '0') {
+            if (!img.saved) {
+                toggle('');
+                trigger("saved");
+                dispatch(save(img.id));
+            } else {
+                setRemoving(true);
+            }
         }
         else {
-            toggle('');
-            trigger('removed')
-            dispatch(remove(img.id));
+            setRemoving(true);
         }
     }
 
     return (
         <div className="modal">
-            <div className="modal-background" onClick={() => { toggle('') }}></div>
+            {
+                removing ?
+                    <Alert
+                        className="alert"
+                        action={
+                            <div>
+                                <Button color="inherit" size="small" onClick={() => {
+                                    toggle('');
+                                    trigger('removed')
+                                    current == '0' ? dispatch(save(img.id)) : dispatch(remove(img.id));
+                                    setRemoving(false);
+                                }}>
+                                    Remove
+                                </Button>
+                                <Button color="inherit" size="small" onClick={() => {
+                                    setRemoving(false);
+                                }}>
+                                    Cancel
+                                </Button>
+                            </div>
+                        }
+                        severity="warning"
+                    >Are you sure you want to remove this photo from favourites?</Alert>
+                    :
+                    <></>
+            }
+            <div className="modal-background" onClick={() => { toggle(''); setRemoving(false); }}></div>
             <img className="img" src={img.urls.full} />
             <div className="controls">
                 <DownloadIcon className="icon" onClick={() => { saveAs(img.urls.full) }} />
