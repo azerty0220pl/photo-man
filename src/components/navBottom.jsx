@@ -27,7 +27,7 @@ const getScrollPosition = () => {
 const NavBottom = ({ current }) => {
     const dispatch = useDispatch();
 
-    const [visible, setVisible] = useState(false);
+    const [button, setButton] = useState("down");
 
     let lnk;
     let ocl;
@@ -45,10 +45,10 @@ const NavBottom = ({ current }) => {
 
     useLayoutEffect(() => {
         const handleScroll = () => {
-            if (getScrollPosition() > 450)
-                setVisible(true);
-            else
-                setVisible(false);
+            if (getScrollPosition() > 450 && button == "down")
+                setButton("climbing");
+            else if (getScrollPosition() <= 450 && button == "up")
+                setButton("dropping");
         }
 
         window.addEventListener('scroll', handleScroll)
@@ -57,10 +57,18 @@ const NavBottom = ({ current }) => {
     });
 
     return (
-        visible ?
-            <NavLink className="navBottom" to={lnk}><Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }} onClick={ocl()}>{btn}</Button></NavLink>
-            :
-            <></>
+        <NavLink
+            className={"navBottom " + button}
+            onAnimationEnd={() => {
+                switch (button) {
+                    case "dropping":
+                        setButton("down");
+                        break;
+                    case "climbing":
+                        setButton("up");
+                        break;
+                }
+            }} to={lnk}><Button theme={theme} variant="outlined" sx={{ boxShadow: 3 }} onClick={ocl()}>{btn}</Button></NavLink>
     );
 }
 

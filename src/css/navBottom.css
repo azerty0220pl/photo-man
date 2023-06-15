@@ -1,23 +1,39 @@
 @keyframes navLink {
     from {
-        bottom: -2rem;
+        bottom: -2.5rem;
     }    
     to {
-        bottom: 2rem;
+        bottom: 2.5rem;
     }
 }
 
 .navBottom {
     position: fixed;
     left: 50%;
-    bottom: 2rem;
     margin-left: -7rem;
     width: 14rem;
     z-index: 20;
-    animation: 0.5s 1 normal navLink;
 }
 
 .navBottom button {
     background-color: white;
     width: 100%;
+}
+
+.climbing {
+    animation: 0.5s 1 normal navLink;
+    animation-fill-mode: forwards;
+}
+
+.dropping {
+    animation: 0.5s 1 reverse navLink;
+    animation-fill-mode: forwards;
+}
+
+.up {
+    bottom: 2.5rem;
+}
+
+.down {
+    bottom: -2.5rem;
 }
