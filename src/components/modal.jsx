@@ -87,6 +87,7 @@ const Modal = ({ img, toggle, current, trigger }) => {
             }
             <div className="modal-background" onClick={() => { toggle(''); setRemoving(false); }}></div>
             <img className="img" src={img.urls.full} />
+            <div className="data">
             <div className="controls">
                 <DownloadIcon className="icon" onClick={() => { saveAs(img.urls.full) }} />
                 {
@@ -95,7 +96,6 @@ const Modal = ({ img, toggle, current, trigger }) => {
                 }
                 <CloseIcon className="icon" onClick={() => { toggle(''); }} />
             </div>
-            <div className="data">
                 <div className="row">
                     {
                         editing ?

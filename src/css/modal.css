@@ -45,12 +45,14 @@
 }
 
 .data {
+    position: relative;
     width: 75%;
     background-color: white;
     border: 1px solid black;
     border-radius: 0.5rem;
     margin-left: -1px;
     padding: 0.5rem 2rem;
+    padding-top: 3rem;
 }
 
 .row {
